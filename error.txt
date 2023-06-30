@@ -1,0 +1,27 @@
+> #library(devtools)
+> #devtools::install_local("D:/gdalUtils-master.zip")
+> 
+> library(snowwarp)
+> #download_snowwarp_data(
+> #  mail = "lxfadd0410@gmail.com",
+> #  link = "https://drive.google.com/drive/folders/1m171rAXlZQc59OfaByyfdW4ua69U1tEo",
+> #  folder = file.path(getwd(), "data"))
+> 
+> folder <- file.path(getwd(), "data")
+> nTiles <- get_snowwarp_tiles(folder)
+[1] "There are 1 tiles."
+> 
+> process_snowwarp(
++   folder = folder,
++   years = 2000:2020,
++   cpus = round(parallel::detectCores()*0.7), # use 70% of cores
++   otb_dir = "C:/Users/mac/Desktop/OTB-8.1.2-Win64/OTB-8.1.2-Win64",
++   max_ram = memory.limit()*0.7, # use 70% of available RAM
++   tiles = nTiles
++ )
+[1] "Processing of Landsat tile 1 started at 2023-06-30 12:01:37.451972."
+Error in .rasterObjectFromFile(x, objecttype = "RasterBrick", ...) : 
+  Cannot create a RasterLayer object from this file. (file does not exist)
+In addition: Warning messages:
+1: 'memory.limit()' is no longer supported 
+2: C:/Users/mac/Documents/data/output/snowwarp_2000_2001_tile_1.tif: No such file or directory (GDAL error 4)
